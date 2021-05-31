@@ -9,15 +9,24 @@
 - Batch Scoring Appの各要素のデモアプリ
 
 ***
-フォルダ構成
+#### フォルダ構成
 ```
 Wave_Tutorial_v<Waveバージョン>
- ├── demo_app/        ... Batch Scoring Appの各要素のデモアプリ
- ├── app.py           ... Batch Scoring App
- ├── sample_data/     ... サンプルデータ
- └── scoring_data/    ... Batch Scoring Appのスコアリングデータ保存先（Batch Scoring App実行の際scoring_dataとしてディレクトリを作成しておく）
+ ├── requirements.txt  ... Python実行環境へインストールするライブラリ
+ ├── demo_app/         ... Batch Scoring Appの各要素のデモアプリ
+ ├── app.py            ... Batch Scoring App
+ ├── sample_data/      ... サンプルデータ
+ └── scoring_data/     ... Batch Scoring Appのスコアリングデータ保存先（Batch Scoring App実行の際scoring_dataとしてディレクトリを作成しておく）
 ```
+#### アプリの実行
+Waveの起動
 
+```bash
+Wave_Tutorial_v0160 % source v0160/bin/activate
+(v0160) Wave_Tutorial_v0160 % 
+(v0160) Wave_Tutorial_v0160 % python -V
+Python 3.8.10
+```
 ***
 ### [H2O Wave 公式ページ](https://wave.h2o.ai/)
 

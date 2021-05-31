@@ -23,9 +23,10 @@ Waveの起動
 
 ```bash
 Wave_Tutorial_v0160 % source v0160/bin/activate
-(v0160) Wave_Tutorial_v0160 % 
 (v0160) Wave_Tutorial_v0160 % python -V
 Python 3.8.10
+(v0160) Wave_Tutorial_v0160 % pip install -r requirements.txt
+...
 ```
 ***
 ### [H2O Wave 公式ページ](https://wave.h2o.ai/)

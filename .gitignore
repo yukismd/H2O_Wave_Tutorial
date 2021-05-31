@@ -1,0 +1,18 @@
+# ignore jupyter notebook backup folders
+.ipynb_checkpoints/
+python_api/.ipynb_checkpoints/
+
+# ignore linux background log file
+nohup.out
+
+# mac files
+.DS_Store
+
+# ms power point files
+*.pptx
+
+# Python仮想環境ファイル
+Wave_Tutorial_v0160/v0160/pyvenv.cfg
+Wave_Tutorial_v0160/v0160/bin/*
+Wave_Tutorial_v0160/v0160/include/*
+Wave_Tutorial_v0160/v0160/lib/*

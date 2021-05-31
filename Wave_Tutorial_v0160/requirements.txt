@@ -1,0 +1,4 @@
+h2o_wave==0.16.0
+driverlessai==1.9.2.1
+pandas
+numpy

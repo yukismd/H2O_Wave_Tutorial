@@ -9,6 +9,14 @@
 - Batch Scoring Appの各要素のデモアプリ
 
 ***
-### [H2O Wave公式ページ](https://wave.h2o.ai/)
+```
+Wave_Tutorial_vXXXX
+ ├── demo_app/        ... Examples
+ ├── app.py           ... Browser testing framework
+ ├── sample_data/     ... Wave server web root (do not modify!)
+ └── scoring_data/    ... Wave server executable
+```
+
 ***
+### [H2O Wave 公式ページ](https://wave.h2o.ai/)
 

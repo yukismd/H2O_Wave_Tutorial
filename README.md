@@ -9,12 +9,13 @@
 - Batch Scoring Appの各要素のデモアプリ
 
 ***
+フォルダ構成
 ```
-Wave_Tutorial_vXXXX
- ├── demo_app/        ... Examples
- ├── app.py           ... Browser testing framework
- ├── sample_data/     ... Wave server web root (do not modify!)
- └── scoring_data/    ... Wave server executable
+Wave_Tutorial_v<Waveバージョン>
+ ├── demo_app/        ... Batch Scoring Appの各要素のデモアプリ
+ ├── app.py           ... Batch Scoring App
+ ├── sample_data/     ... サンプルデータ
+ └── scoring_data/    ... Batch Scoring Appのスコアリングデータ保存先（Batch Scoring App実行の際scoring_dataとしてディレクトリを作成しておく）
 ```
 
 ***

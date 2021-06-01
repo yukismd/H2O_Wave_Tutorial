@@ -31,7 +31,7 @@ wave-0.16.0-darwin-amd64 % ./waved
 2021/06/01 08:33:00 # └────────────────┘
 ...
 ```
-
+  
 Python実行環境の準備と各アプリの実行（チュートリアルフォルダ内で実行）
 ```bash
 Wave_Tutorial_v0160 % source v0160/bin/activate                                   (1)

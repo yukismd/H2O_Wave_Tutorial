@@ -1,3 +1,3 @@
 # Temporary scoring data depo
 
-Scoring data by 'app.py' are stored.
+Scoring and scored data used in app.py are stored.

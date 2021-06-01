@@ -32,14 +32,19 @@ wave-0.16.0-darwin-amd64 % ./waved
 ...
 ```
 
-Python実行環境の準備と各アプリの実行
+Python実行環境の準備と各アプリの実行（チュートリアルフォルダ内で実行）
 ```bash
-Wave_Tutorial_v0160 % source v0160/bin/activate
+Wave_Tutorial_v0160 % source v0160/bin/activate                                   (1)
 (v0160) Wave_Tutorial_v0160 % python -V
 Python 3.8.10
-(v0160) Wave_Tutorial_v0160 % pip install -r requirements.txt
+(v0160) Wave_Tutorial_v0160 % pip install -r requirements.txt                     (2)
+(v0160) Wave_Tutorial_v0160 % wave run demo_apps/demo_hello_app.py                (3)
 ...
 ```
+(1) Python仮想環境のアクティベート（'v0160'としてチュートリアルフォルダ内で環境作成済み）
+(2) 必要Pythonパッケージのインストール（初回のみ実施）
+(3) アプリの実行
+
 ***
 ### [H2O Wave 公式ページ](https://wave.h2o.ai/)
 

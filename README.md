@@ -44,8 +44,11 @@ Python 3.8.10
 (1) Python仮想環境のアクティベート（'v0160'としてチュートリアルフォルダ内で環境作成済み）  
 (2) 必要Pythonパッケージのインストール（初回のみ実施）  
 (3) アプリの実行  
+(3)の実行後、ブラウザからアクセス
 ![hello app](./img/hello_app.png)
 
+***
+[Wave_Tutorial_v0160](Wave_Tutorial_v0160/)
 
 ***
 ### [H2O Wave 公式ページ](https://wave.h2o.ai/)

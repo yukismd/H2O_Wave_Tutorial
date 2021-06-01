@@ -21,7 +21,8 @@ Wave_Tutorial_v<Waveバージョン>
 #### アプリの実行（Mac OS環境）
 
 Waveの起動
-[Wave SDK](https://github.com/h2oai/wave/releases)のダウンロード、解凍し、フォルダ内でwavedファイルを実行
+1. [Wave SDK](https://github.com/h2oai/wave/releases)のダウンロード
+2. ダウンロードフォルダを解凍し、フォルダ内でwavedファイルを実行
 ```
 wave-0.16.0-darwin-amd64 % ./waved
 2021/06/01 08:33:00 # 
@@ -41,10 +42,10 @@ Python 3.8.10
 (v0160) Wave_Tutorial_v0160 % wave run demo_apps/demo_hello_app.py                (3)
 ...
 ```
-(1) Python仮想環境のアクティベート（'v0160'としてチュートリアルフォルダ内で環境作成済み）  
-(2) 必要Pythonパッケージのインストール（初回のみ実施）  
-(3) アプリの実行  
-(3)の実行後、ブラウザからアクセス  
+1. (1) Python仮想環境のアクティベート（'v0160'としてチュートリアルフォルダ内で環境作成済み）  
+2. (2) 必要Pythonパッケージのインストール（初回のみ実施）  
+3. (3) アプリの実行  
+4. (3)の実行後、ブラウザからアクセス  
 ![hello app](./img/hello_app.png)
 
 ***

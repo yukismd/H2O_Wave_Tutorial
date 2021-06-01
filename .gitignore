@@ -12,7 +12,7 @@ nohup.out
 *.pptx
 
 # Python仮想環境ファイル
-Wave_Tutorial_v0160/v0160/pyvenv.cfg
-Wave_Tutorial_v0160/v0160/bin/*
-Wave_Tutorial_v0160/v0160/include/*
-Wave_Tutorial_v0160/v0160/lib/*
+Wave_Tutorial_v0160/v0160/*
+
+# app.pyで利用されるデータ保存先
+scoring_data/*

@@ -15,4 +15,6 @@ nohup.out
 Wave_Tutorial_v0160/v0160/*
 
 # app.pyで利用されるデータ保存先
-scoring_data/*
+Wave_Tutorial_v0160/scoring_data/*
+
+__pycache__

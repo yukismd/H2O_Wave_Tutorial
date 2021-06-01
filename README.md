@@ -20,7 +20,7 @@ Wave_Tutorial_v<Waveバージョン>
 ```
 #### アプリの実行（Mac OS環境）
 
-Waveの起動
+Waveの起動（Webサーバの実行）
 1. [Wave SDK](https://github.com/h2oai/wave/releases)のダウンロード
 2. ダウンロードフォルダを解凍し、フォルダ内でwavedファイルを実行
 ```

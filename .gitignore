@@ -17,4 +17,6 @@ Wave_Tutorial_v0160/v0160/*
 # app.pyで利用されるデータ保存先
 Wave_Tutorial_v0160/scoring_data/*.csv
 
+# Waveで使われるキャッシュ等
+h2o_wave.state
 __pycache__

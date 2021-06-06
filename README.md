@@ -56,17 +56,21 @@ Python 3.8.10
 ```bash
 (v0160) Wave_Tutorial_v0160 % wave run app.py
 ```
+  
 ブラウザからアクセス、接続先Driverless AIを指定
 ![app1](./img/app1.png)
+  
 モデル（Experiment）を指定
 ![app2](./img/app2.png)
+  
 スコアリング用データをアップロード
 ![app3](./img/app3.png)
+  
 スコアリング結果
 ![app4](./img/app4.png)
 
 ***
-PDF資料：[Wave-GettingStarted ver20210605.pdf](Wave-GettingStarted ver20210605.pdf)
+PDF資料：[Wave-GettingStarted ver20210605.pdf](./Wave-GettingStarted ver20210605.pdf)
 ***
 ### チュートリアルバージョン
 Wave0.16.0:[Wave_Tutorial_v0160](Wave_Tutorial_v0160/)

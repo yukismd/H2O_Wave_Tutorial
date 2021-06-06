@@ -51,12 +51,12 @@ Python 3.8.10
 
 ***
 ## Batch Scoring App
-アプリの起動
+#### アプリの起動
 ```bash
 (v0160) Wave_Tutorial_v0160 % wave run app.py
 ```
   
-アプリの利用
+#### アプリの利用
 ![app1](./img/app_1.png)
 ![app2](./img/app_2.png)
 

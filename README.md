@@ -57,8 +57,8 @@ Python 3.8.10
 (v0160) Wave_Tutorial_v0160 % wave run app.py
 ```
   
-![app_1](./img/app_1.png)
-![app_2](./img/app_2.png)
+![app1](./img/app_1.png)
+![app2](./img/app_2.png)
 
 ***
 PDF資料：[Wave-GettingStarted ver20210605.pdf](./Wave-GettingStarted ver20210605.pdf)

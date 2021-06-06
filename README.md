@@ -61,7 +61,7 @@ Python 3.8.10
 ![app2](./img/app_2.png)
 
 ***
-PDF資料：[Wave-GettingStarted ver20210605.pdf](./Wave-GettingStarted ver20210605.pdf)
+PDF資料：[Wave-GettingStarted ver20210605.pdf](Wave-GettingStarted ver20210605.pdf)
 ***
 ### チュートリアルバージョン
 Wave0.16.0:[Wave_Tutorial_v0160](Wave_Tutorial_v0160/)

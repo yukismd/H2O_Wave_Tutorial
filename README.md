@@ -1,6 +1,6 @@
 # H2O_Wave_Tutorial
 
-### H2O Waveチュートリアル
+## H2O Waveチュートリアル
 目的：
 - Batch Scoring App（H2O Driverless AIに接続、利用学習済みモデルを選択、csvのアップロードとスコアリングの実施）の開発
   
@@ -9,6 +9,7 @@
 - Batch Scoring Appの各要素のデモアプリ
 
 ***
+### 実行方法
 #### フォルダ構成
 ```
 Wave_Tutorial_v<Waveバージョン>
@@ -49,8 +50,26 @@ Python 3.8.10
 ![hello app](./img/hello_app.png)
 
 ***
-[Wave_Tutorial_v0160](Wave_Tutorial_v0160/)
+## Batch Scoring App
+  
+アプリの開始
+```bash
+(v0160) Wave_Tutorial_v0160 % wave run app.py
+```
+ブラウザからアクセス、接続先Driverless AIを指定
+![app1](./img/app1.png)
+モデル（Experiment）を指定
+![app2](./img/app2.png)
+スコアリング用データをアップロード
+![app3](./img/app3.png)
+スコアリング結果
+![app4](./img/app4.png)
+
+***
+PDF資料：[Wave-GettingStarted ver20210605.pdf](Wave-GettingStarted ver20210605.pdf)
+***
+### チュートリアルバージョン
+Wave0.16.0:[Wave_Tutorial_v0160](Wave_Tutorial_v0160/)
 
 ***
 ### [H2O Wave 公式ページ](https://wave.h2o.ai/)
-

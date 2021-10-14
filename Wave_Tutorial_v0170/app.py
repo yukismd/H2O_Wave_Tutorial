@@ -1,6 +1,3 @@
-import datetime
-import inspect
-
 from h2o_wave import main, app, Q, ui, on, handle_on, data
 from driverlessai import Client
 
@@ -11,8 +8,6 @@ import numpy as np
 @app('/app')
 async def serve(q: Q):
     """This function will route the user based on how they have interacted with the application."""
-
-    print_usage_details()
 
     # Set up the application
     if not q.client.initialized:
@@ -29,7 +24,6 @@ async def serve(q: Q):
 
 async def initialize_app_for_new_client(q: Q):
     """Setup this Wave application for each browser tab by creating a page layout and setting any needed variables"""
-    print_usage_details()
 
     if not q.user.initialized:
         await initialize_app_for_new_user(q)
@@ -56,34 +50,28 @@ async def initialize_app_for_new_client(q: Q):
 
 
 async def initialize_app_for_new_user(q: Q):
-    """Setup this Wave application for a new user for the first time"""
-    print_usage_details()
-
+    """初期化フラグ（Userレベル）"""
     if not q.app.initialized:
         await initialize_app(q)
-
     q.user.initialized = True
 
 
 async def initialize_app(q: Q):
-    """Setup this Wave application for the first time"""
-    print_usage_details()
-
+    """初期化フラグ（Appレベル）"""
     q.app.initialized = True
 
 
 def render_sidebar_content(q: Q):
     """ 
-    サイドバーコンテンツの表示
+    サイドバーコンテンツの表示振り分け
     トップのConnect,Select,ScoreのStepperは常に表示
     """
-    print_usage_details()
 
-    if not q.client.dai_connection:    # DAIに接続されてない場合
+    if not q.client.dai_connection:    # DAIに接続されてない場合（DAI接続設定）
         sidebar_items = get_dai_configure_items(q)
-    elif not q.client.model_selected:  # モデルが選択されていない場合
+    elif not q.client.model_selected:  # モデルが選択されていない場合（モデル選択）
         sidebar_items = get_model_selection_items(q)
-    elif not q.client.data_uploaded:   # データがアップロードされていない場合
+    elif not q.client.data_uploaded:   # データがアップロードされていない場合（データのアップロード）
         sidebar_items = get_batch_score_items(q)
 
     q.page['sidebar'] = ui.form_card(
@@ -98,13 +86,136 @@ def render_sidebar_content(q: Q):
     )
 
 
+@on('dai_connect_button')    # DAI接続ボタン（dai_connect_button）のクリック後すぐに実施される
+async def handle_dai_connection(q: Q):
+
+    q.user.dai_url = q.args.dai_url
+    q.user.dai_username = q.args.dai_username
+    q.user.dai_password = q.args.dai_password
+
+    _, q.client.error = create_dai_connection(q)
+    if q.client.error is None:
+        q.client.dai_connection = True
+
+    render_sidebar_content(q)
+
+
+@on('select_model_button')    # モデル選択ボタン（select_model_button）のクリック後すぐに実施される
+async def handle_model_selection(q: Q):
+
+    q.client.experiment_key = q.args.experiment_dropdown    # DAIモデルID
+    q.client.model_selected = True
+    render_sidebar_content(q)
+
+
+@on('file_upload')    # スコアリングデータアップロードボタン（file_upload）のクリック後すぐに実施される
+async def handle_batch_scoring(q: Q):
+
+    q.client.batch_data_path = await q.site.download(url=q.args.file_upload[0], path='./scoring_data')  # App実行パス上へのデータのDLとDLパスの取得
+    q.client.data_uploaded = True
+    render_center_content(q)
+
+
+def get_dai_configure_items(q: Q):
+    """ 
+    DAIに接続する初期画面
+    dai_connect_button: [Connect]ボタンが押されるとTrue
+    """
+
+    if q.client.error is not None:
+        dai_message = ui.message_bar(type='error', text=f'Connection Failed: {q.client.error}')
+    elif q.client.dai_conn is None:
+        dai_message = ui.message_bar(type='warning', text='This app is not connected to DAI!')
+    else:
+        dai_message = ui.message_bar(type='success', text='This app is connected to DAI!')
+
+    dai_connection_items = [
+        ui.separator('Connect to DAI'),
+        dai_message,
+        ui.textbox(name='dai_url', label='Driverlss AI URL', value=q.user.dai_url, required=True),
+        ui.textbox(name='dai_username', label='Driverless AI Username', value=q.user.dai_username, required=True),
+        ui.textbox(name='dai_password', label='Driverless AI Password', value=q.user.dai_password, required=True,
+                   password=True),
+        ui.buttons([ui.button(name='dai_connect_button', label='Connect', primary=True)], justify='center')
+    ]
+    return dai_connection_items
+
+
+def get_model_selection_items(q: Q):
+    """
+    DAI接続後のモデル選択画面
+    select_model_button: [Select]ボタンが押されるとTrue
+    """
+
+    dai, error = create_dai_connection(q)
+
+    ui_choice_experiments = [ui.choice(d.key, d.name) for d in dai.experiments.list()]
+    model_selection_items = [
+        ui.separator('Select a Model'),
+        ui.dropdown(name='experiment_dropdown', label='Driverless AI Models', required=True,
+                    choices=ui_choice_experiments, value=q.client.experiment_key),
+        ui.buttons([ui.button(name='select_model_button', label='Select', primary=True)], justify='center')
+    ]
+    return model_selection_items
+
+
+def get_batch_score_items(q: Q):
+    """
+    データのアップロード画面
+    file_upload: [Score Data]ボタンが押されるとデータがWaveサーバにアップされ、（サーバ上仮想）パスが返る
+    """
+
+    dai, error = create_dai_connection(q)
+    experiment = dai.experiments.get(q.client.experiment_key)
+    q.client.expected_columns = experiment.datasets['train_dataset'].columns   # 選択されたモデルの学習データのカラム名
+
+    get_predictions_items = [
+        ui.message_bar(type='info',
+                       text=f'Expecting a csv with the following columns: {q.client.expected_columns}'),
+        ui.file_upload(name='file_upload', label='Score Data', file_extensions=['csv'])
+    ]
+    return get_predictions_items
+
+
+def create_dai_connection(q):
+    """ 
+    DAIに接続しClientオブジェクトを返す
+    http://docs.h2o.ai/driverless-ai/pyclient/docs/html/client.html
+    """
+    try:
+        conn = Client(q.user.dai_url, q.user.dai_username, q.user.dai_password, verify=False)
+        return conn, None
+    except Exception as ex:
+        return None, str(ex)
+
+
+def get_dai_new_predictions(q):
+    """ スコアリングの実施
+    """
+
+    # connect to DAI and get reference to the experiment
+    dai, error = create_dai_connection(q)
+    experiment = dai.experiments.get(q.client.experiment_key)
+
+    q.client.target_column = experiment.settings['target_column']   # Experiment情報：ターゲット変数名
+    q.client.modeling_task = experiment.settings['task']    # Experiment情報：classification/regression
+
+    data_to_predict = dai.datasets.create(q.client.batch_data_path, name='test_data_set', force=True)  # データをDAIにアップロード（Datasetクラス）
+    dai_predictions = experiment.predict(data_to_predict, include_columns=data_to_predict.columns)   # スコアリングの実施
+    data_to_predict.delete()
+
+    local_file_path = dai_predictions.download('.')    # スコアリング結果のダウンロード先（App実行上のパス）
+    local_data_predictions = pd.read_csv(local_file_path)
+    print(local_data_predictions)
+
+    return local_data_predictions
+
+
 def render_center_content(q: Q):
+    """ データアップロード後の結果の表示
     """
 
-    """
-    print_usage_details()
-
-    df = get_dai_new_predictions(q)
+    df = get_dai_new_predictions(q)    # スコアリング結果をpandas.DataFrameとして取得
 
     q.page['predictions'] = ui.form_card(
         box='4 2 8 5',
@@ -136,143 +247,7 @@ def render_center_content(q: Q):
     )
 
 
-@on('dai_connect_button')    # DAI接続ボタンのクリック後すぐに実施される
-async def handle_dai_connection(q: Q):
-    print_usage_details()
-
-    q.user.dai_url = q.args.dai_url
-    q.user.dai_username = q.args.dai_username
-    q.user.dai_password = q.args.dai_password
-
-    _, q.client.error = create_dai_connection(q)
-    if q.client.error is None:
-        q.client.dai_connection = True
-
-    render_sidebar_content(q)
-
-
-@on('select_model_button')    # モデル選択ボタンのクリック後すぐに実施される
-async def handle_model_selection(q: Q):
-    print_usage_details()
-
-    q.client.experiment_key = q.args.experiment_dropdown    # DAIモデルID
-    q.client.model_selected = True
-    render_sidebar_content(q)
-
-
-@on('file_upload')    # スコアリングデータアップロードボタンのクリック後すぐに実施される
-async def handle_batch_scoring(q: Q):
-    print_usage_details()
-
-    q.client.batch_data_path = await q.site.download(url=q.args.file_upload[0], path='./scoring_data')  # App実行パス上へのデータのDLとDLパスの取得
-    q.client.data_uploaded = True
-    render_center_content(q)
-
-
-def get_dai_configure_items(q: Q):
-    """ 
-    DAIに接続する初期画面
-    dai_url,dai_username,dai_passwordのボタン情報
-    dai_connect_button: [Connect]ボタンが押されるとTrue
-    """
-    print_usage_details()
-
-    if q.client.error is not None:
-        dai_message = ui.message_bar(type='error', text=f'Connection Failed: {q.client.error}')
-    elif q.client.dai_conn is None:
-        dai_message = ui.message_bar(type='warning', text='This app is not connected to DAI!')
-    else:
-        dai_message = ui.message_bar(type='success', text='This app is connected to DAI!')
-
-    dai_connection_items = [
-        ui.separator('Connect to DAI'),
-        dai_message,
-        ui.textbox(name='dai_url', label='Driverlss AI URL', value=q.user.dai_url, required=True),
-        ui.textbox(name='dai_username', label='Driverless AI Username', value=q.user.dai_username, required=True),
-        ui.textbox(name='dai_password', label='Driverless AI Password', value=q.user.dai_password, required=True,
-                   password=True),
-        ui.buttons([ui.button(name='dai_connect_button', label='Connect', primary=True)], justify='center')
-    ]
-    return dai_connection_items
-
-
-def get_model_selection_items(q: Q):
-    """
-    DAI接続後のモデル選択画面
-    experiment_dropdown（DAIモデルID）のボタン情報
-    select_model_button: [Select]ボタンが押されるとTrue
-    """
-    print_usage_details()
-
-    dai, error = create_dai_connection(q)
-
-    ui_choice_experiments = [ui.choice(d.key, d.name) for d in dai.experiments.list()]
-    model_selection_items = [
-        ui.separator('Select a Model'),
-        ui.dropdown(name='experiment_dropdown', label='Driverless AI Models', required=True,
-                    choices=ui_choice_experiments, value=q.client.experiment_key),
-        ui.buttons([ui.button(name='select_model_button', label='Select', primary=True)], justify='center')
-    ]
-    return model_selection_items
-
-
-def get_batch_score_items(q: Q):
-    """
-    データのアップロード画面
-    file_upload: [Score Data]ボタンが押されるとデータがWaveサーバにアップされ、（サーバ上仮想）パスが返る
-    """
-    print_usage_details()
-
-    dai, error = create_dai_connection(q)
-    experiment = dai.experiments.get(q.client.experiment_key)
-    q.client.expected_columns = experiment.datasets['train_dataset'].columns   # 選択されたモデルのスコアリングに必要なカラム名
-
-    get_predictions_items = [
-        ui.message_bar(type='info',
-                       text=f'Expecting a csv with the following columns: {q.client.expected_columns}'),
-        ui.file_upload(name='file_upload', label='Score Data', file_extensions=['csv'])
-    ]
-    return get_predictions_items
-
-
-def print_usage_details():
-    """Logging to understand which functions are being called and when"""
-    print(f'{datetime.datetime.now()} - {inspect.stack()[1][3]}', flush=True)
-
-
-def create_dai_connection(q):
-    """ 
-    DAIに接続しClientオブジェクトを返す
-    http://docs.h2o.ai/driverless-ai/pyclient/docs/html/client.html
-    """
-    print_usage_details()
-    try:
-        conn = Client(q.user.dai_url, q.user.dai_username, q.user.dai_password, verify=False)
-        return conn, None
-    except Exception as ex:
-        return None, str(ex)
-
-
-def get_dai_new_predictions(q):
-    print_usage_details()
-
-    # connect to DAI and get reference to the experiment
-    dai, error = create_dai_connection(q)
-    experiment = dai.experiments.get(q.client.experiment_key)
-
-    q.client.target_column = experiment.settings['target_column']   # Experiment情報：ターゲット変数名
-    q.client.modeling_task = experiment.settings['task']    # Experiment情報：classification/regression
-
-    data_to_predict = dai.datasets.create(q.client.batch_data_path, name='test_data_set', force=True)  # データをDAIにアップロード（Datasetクラス）
-    dai_predictions = experiment.predict(data_to_predict, include_columns=data_to_predict.columns)
-    data_to_predict.delete()
-
-    local_file_path = dai_predictions.download('./scoring_data/')    # App実行上のパス
-    local_data_predictions = pd.read_csv(local_file_path)
-    print(local_data_predictions)
-
-    return local_data_predictions
-
+##########################  ユーティリティ関数  ##########################
 
 def ui_table_from_df(
     df: pd.DataFrame,
@@ -288,7 +263,6 @@ def ui_table_from_df(
     link_col: str = None,
     height: str = '100%'
 ) -> ui.table:
-    print_usage_details()
 
     print(df.head())
 

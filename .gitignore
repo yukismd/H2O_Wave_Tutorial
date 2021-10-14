@@ -13,9 +13,11 @@ nohup.out
 
 # Python仮想環境ファイル
 Wave_Tutorial_v0160/v0160/*
+Wave_Tutorial_v0170/v0170/*
 
 # app.pyで利用されるデータ保存先
 Wave_Tutorial_v0160/scoring_data/*.csv
+Wave_Tutorial_v0170/scoring_data/*.csv
 
 # Waveで使われるキャッシュ等
 h2o_wave.state

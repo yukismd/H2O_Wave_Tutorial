@@ -60,10 +60,9 @@ Python 3.8.10
 ![app2](./img/app_2.png)
 
 ***
-[PDF資料](./Wave-GettingStarted_ver20210730.pdf)
-***
-### チュートリアルバージョン
-Wave0.16.0:[Wave_Tutorial_v0160](Wave_Tutorial_v0160/)
+### チュートリアル（バージョン別）
+コード:[Wave_Tutorial_v0160](Wave_Tutorial_v0160/), 資料：[Wave-GettingStarted_ver20210730.pdf](Wave-GettingStarted_ver20210730.pdf)
+コード:[Wave_Tutorial_v0170](Wave_Tutorial_v0170/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver20210908.pdf)
 
 ***
 ### [H2O Wave 公式ページ](https://wave.h2o.ai/)

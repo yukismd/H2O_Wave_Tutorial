@@ -63,6 +63,7 @@ Python 3.8.10
 ### チュートリアル（バージョン別）
 コード:[Wave_Tutorial_v0160](Wave_Tutorial_v0160/), 資料：[Wave-GettingStarted_ver20210730.pdf](Wave-GettingStarted_ver20210730.pdf)  
 コード:[Wave_Tutorial_v0170](Wave_Tutorial_v0170/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver20210908.pdf)
+コード:[Wave_Tutorial_v0200](Wave_Tutorial_v0200/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver220209.pdf)
 
 ***
 ### [H2O Wave 公式ページ](https://wave.h2o.ai/)

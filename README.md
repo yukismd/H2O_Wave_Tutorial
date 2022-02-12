@@ -17,22 +17,15 @@ Wave_Tutorial_v<Waveバージョン>
  ├── sample_data/      ... サンプルデータ
  └── scoring_data/     ... Batch Scoring Appのスコアリングデータ保存先（Batch Scoring App実行の際scoring_dataとしてディレクトリを作成しておく）
 ```
-#### アプリの実行（Mac OS環境）
-[環境構築](https://wave.h2o.ai/docs/installation)
+#### 環境構築
+[ドキュメント](https://wave.h2o.ai/docs/installation)
   
-Python実行環境の準備と各アプリの実行（チュートリアルフォルダ内で実行）
+#### アプリの実行
+（チュートリアルフォルダ内で実行）
 ```bash
-Wave_Tutorial_v0160 % source v0160/bin/activate                                   (1)
-(v0160) Wave_Tutorial_v0160 % python -V
-Python 3.8.10
-(v0160) Wave_Tutorial_v0160 % pip install -r requirements.txt                     (2)
-(v0160) Wave_Tutorial_v0160 % wave run demo_apps/demo_hello_app.py                (3)
+(v0200) Wave_Tutorial_v0200 % wave run demo_apps/demo_hello_app.py
 ...
 ```
-1. (1) Python仮想環境のアクティベート（'v0160'としてチュートリアルフォルダ内で環境作成済み）  
-2. (2) 必要Pythonパッケージのインストール（初回のみ実施）  
-3. (3) アプリの実行  
-4. (3)の実行後、ブラウザからアクセス  
 ![hello app](./img/hello_app.png)
 
 ***

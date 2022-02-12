@@ -1,9 +1,9 @@
 # H2O_Wave_Tutorial
 
 ## H2O Waveチュートリアル
-コード:[Wave_Tutorial_v0160](Wave_Tutorial_v0160/), 資料：[Wave-GettingStarted_ver20210730.pdf](Wave-GettingStarted_ver20210730.pdf)  
-コード:[Wave_Tutorial_v0170](Wave_Tutorial_v0170/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver20210908.pdf)  
-コード:[Wave_Tutorial_v0200](Wave_Tutorial_v0200/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver220209.pdf)
+Wave 0.16.0 - コード:[Wave_Tutorial_v0160](Wave_Tutorial_v0160/), 資料：[Wave-GettingStarted_ver20210730.pdf](Wave-GettingStarted_ver20210730.pdf)  
+Wave 0.17.0 - コード:[Wave_Tutorial_v0170](Wave_Tutorial_v0170/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver20210908.pdf)  
+Wave 0.20.0 - コード:[Wave_Tutorial_v0200](Wave_Tutorial_v0200/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver220209.pdf)
 
 ### 実行方法
 #### フォルダ構成

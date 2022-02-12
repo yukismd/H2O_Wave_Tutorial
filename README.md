@@ -1,14 +1,10 @@
 # H2O_Wave_Tutorial
 
 ## H2O Waveチュートリアル
-目的：
-- Batch Scoring App（H2O Driverless AIに接続、利用学習済みモデルを選択、csvのアップロードとスコアリングの実施）の開発
-  
-内容：
-- Waveの基本的要素に関して
-- Batch Scoring Appの各要素のデモアプリ
+コード:[Wave_Tutorial_v0160](Wave_Tutorial_v0160/), 資料：[Wave-GettingStarted_ver20210730.pdf](Wave-GettingStarted_ver20210730.pdf)  
+コード:[Wave_Tutorial_v0170](Wave_Tutorial_v0170/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver20210908.pdf)  
+コード:[Wave_Tutorial_v0200](Wave_Tutorial_v0200/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver220209.pdf)
 
-***
 ### 実行方法
 #### フォルダ構成
 ```
@@ -58,12 +54,6 @@ Python 3.8.10
 #### アプリの利用
 ![app1](./img/app_1.png)
 ![app2](./img/app_2.png)
-
-***
-### チュートリアル（バージョン別）
-コード:[Wave_Tutorial_v0160](Wave_Tutorial_v0160/), 資料：[Wave-GettingStarted_ver20210730.pdf](Wave-GettingStarted_ver20210730.pdf)  
-コード:[Wave_Tutorial_v0170](Wave_Tutorial_v0170/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver20210908.pdf)  
-コード:[Wave_Tutorial_v0200](Wave_Tutorial_v0200/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver220209.pdf)
 
 ***
 ### [H2O Wave 公式ドキュメント](https://wave.h2o.ai/)

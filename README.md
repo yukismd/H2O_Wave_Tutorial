@@ -3,7 +3,7 @@
 ## H2O Waveチュートリアル
 Wave 0.16.0 - コード:[Wave_Tutorial_v0160](Wave_Tutorial_v0160/), 資料：[Wave-GettingStarted_ver20210730.pdf](Wave-GettingStarted_ver20210730.pdf)  
 Wave 0.17.0 - コード:[Wave_Tutorial_v0170](Wave_Tutorial_v0170/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver20210908.pdf)  
-Wave 0.20.0 - コード:[Wave_Tutorial_v0200](Wave_Tutorial_v0200/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver220209.pdf)
+（最新）Wave 0.20.0 - コード:[Wave_Tutorial_v0200](Wave_Tutorial_v0200/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver220209.pdf)
 
 ***
 
@@ -24,7 +24,6 @@ Wave_Tutorial_v<Waveバージョン>
 （チュートリアルフォルダ内で実行）
 ```bash
 (v0200) Wave_Tutorial_v0200 % wave run demo_apps/demo_hello_app.py
-...
 ```
 ![hello app](./img/hello_app.png)
 
@@ -32,7 +31,7 @@ Wave_Tutorial_v<Waveバージョン>
 ## Batch Scoring App
 #### アプリの起動
 ```bash
-(v0160) Wave_Tutorial_v0160 % wave run app.py
+(v0200) Wave_Tutorial_v0200 % wave run app.py
 ```
 #### アプリの利用
 ![app1](./img/app_1.png)

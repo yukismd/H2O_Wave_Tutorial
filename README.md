@@ -5,30 +5,20 @@ Wave 0.16.0 - コード:[Wave_Tutorial_v0160](Wave_Tutorial_v0160/), 資料：[W
 Wave 0.17.0 - コード:[Wave_Tutorial_v0170](Wave_Tutorial_v0170/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver20210908.pdf)  
 Wave 0.20.0 - コード:[Wave_Tutorial_v0200](Wave_Tutorial_v0200/), 資料：[Wave-GettingStarted_ver20210908.pdf](Wave-GettingStarted_ver220209.pdf)
 
+***
+
 ### 実行方法
 #### フォルダ構成
 ```
 Wave_Tutorial_v<Waveバージョン>
  ├── requirements.txt  ... Python実行環境へインストールするライブラリ
- ├── demo_app/         ... Batch Scoring Appの各要素のデモアプリ
+ ├── demo_app/         ... 学習用デモアプリ
  ├── app.py            ... Batch Scoring App
  ├── sample_data/      ... サンプルデータ
  └── scoring_data/     ... Batch Scoring Appのスコアリングデータ保存先（Batch Scoring App実行の際scoring_dataとしてディレクトリを作成しておく）
 ```
 #### アプリの実行（Mac OS環境）
-
-Waveの起動（Webサーバの実行）
-1. [Wave SDK](https://github.com/h2oai/wave/releases)のダウンロード
-2. ダウンロードフォルダを解凍し、フォルダ内でwavedファイルを実行
-```
-wave-0.16.0-darwin-amd64 % ./waved
-2021/06/01 08:33:00 # 
-2021/06/01 08:33:00 # ┌────────────────┐ H2O Wave 
-2021/06/01 08:33:00 # │  ┐┌┐┐┌─┐┌ ┌┌─┐ │ 0.16.0 20210525010626
-2021/06/01 08:33:00 # │  └┘└┘└─└└─┘└── │ © 2021 H2O.ai, Inc.
-2021/06/01 08:33:00 # └────────────────┘
-...
-```
+[環境構築](https://wave.h2o.ai/docs/installation)
   
 Python実行環境の準備と各アプリの実行（チュートリアルフォルダ内で実行）
 ```bash

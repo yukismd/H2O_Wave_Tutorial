@@ -9,7 +9,7 @@ nohup.out
 .DS_Store
 
 # ms power point files
-*.pptx
+#*.pptx
 
 # Python仮想環境ファイル
 Wave_Tutorial_v0160/v0160/*
